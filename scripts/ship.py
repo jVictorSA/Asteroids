@@ -11,7 +11,7 @@ def Update(cont):
     ship = cont.owner
 
     keyboard = logic.keyboard.events
-    #tap = logic.KX_INPUT_JUST_ACTIVATED
+    
     w = keyboard[events.WKEY]
     a = keyboard[events.AKEY]
     s = keyboard[events.SKEY]
@@ -25,3 +25,10 @@ def Update(cont):
     ship["time"] = time[0]
     ship.ShipMove(w, s, a, d, time[1])
     ship.ShipRotate(left, right, time[1])
+
+    tap = logic.KX_INPUT_JUST_ACTIVATED
+    enter = keyboard[events.ENTERKEY] == tap
+    if (enter==True):
+        scene = logic.getCurrentScene()
+        scene_ina_objs = scene.objects
+        scene.addObject("bullet", "cannon")
