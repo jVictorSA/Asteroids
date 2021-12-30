@@ -1,0 +1,15 @@
+pandaInc = '/usr/include/panda3d'
+pandaLib = '/usr/lib/python3/dist-packages/panda3d'
+
+Program('Panda3DGame.cpp',
+    CCFLAGS=['-fPIC', '-O2', '-std=gnu++11'],
+    CPPPATH=[pandaInc],
+    LIBPATH=pandaLib,
+    LIBS=[
+        'libp3framework',
+        'libpanda',
+        'libpandafx',
+        'libpandaexpress',
+        'libp3dtoolconfig',
+        'libp3dtool',
+        'libp3direct'])
