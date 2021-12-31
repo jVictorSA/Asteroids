@@ -31,7 +31,7 @@ class Ship(types.KX_GameObject):
         if (right>0 and timer==True):
             self.positions[0] += self.acceleration
             self.applyMovement([self.acceleration, 0, 0], False)
-        print("positions=[{}, {}]".format(self.positions[0], self.positions[1]))
+        #print("positions=[{}, {}]".format(self.positions[0], self.positions[1]))
         #print("getFrametime=", logic.getClockTime())
 
     
