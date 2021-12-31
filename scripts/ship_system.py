@@ -21,16 +21,10 @@ class Ship(types.KX_GameObject):
     def ShipMove(self, up, down, left, right, timer):
         if (up>0 and timer==True):
             self.positions[1] += self.acceleration
-            self.applyMovement([0, self.acceleration, 0], False)
+            self.applyMovement([0, self.acceleration, 0], True)
         if (down>0 and timer==True):
             self.positions[1] -= self.acceleration
-            self.applyMovement([0, -self.acceleration, 0], False)
-        if (left>0 and timer==True):
-            self.positions[0] -= self.acceleration
-            self.applyMovement([-self.acceleration, 0, 0], False)
-        if (right>0 and timer==True):
-            self.positions[0] += self.acceleration
-            self.applyMovement([self.acceleration, 0, 0], False)
+            self.applyMovement([0, -self.acceleration, 0], True)
         #print("positions=[{}, {}]".format(self.positions[0], self.positions[1]))
         #print("getFrametime=", logic.getClockTime())
 
