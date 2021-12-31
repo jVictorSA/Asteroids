@@ -5,8 +5,9 @@ class Ship(types.KX_GameObject):
     def __init__(self, old_owner, lifes=int(3)):
         self.own = old_owner
         self.lifes = lifes
-        self.acceleration = float(0.01)
+        self.acceleration = float(0.0001)
         self.positions = [float(0.0), float(0.0)]
+        self.max_velo = float(0.01)
         self.angle_acceleration = float(0.01)
         self.angle = float(0.0)
 
@@ -19,12 +20,20 @@ class Ship(types.KX_GameObject):
 
 
     def ShipMove(self, up, down, left, right, timer):
-        if (up>0 and timer==True):
+        if (up>0 and timer==True and self.positions[1]<self.max_velo):
             self.positions[1] += self.acceleration
-            self.applyMovement([0, self.acceleration, 0], True)
-        if (down>0 and timer==True):
+            self.applyMovement([0, self.positions[1], 0], True)
+        elif (timer==True and (self.positions[1]>float(0.0))):
             self.positions[1] -= self.acceleration
-            self.applyMovement([0, -self.acceleration, 0], True)
+            self.applyMovement([0, self.positions[1], 0], True)
+
+        if (down>0 and timer==True and self.positions[1]>-self.max_velo):
+            self.positions[1] -= self.acceleration
+            self.applyMovement([0, self.positions[1], 0], True)
+        elif (timer==True and (self.positions[1]< float(0.0))):
+            self.positions[1] += self.acceleration
+            self.applyMovement([0, self.positions[1], 0], True)
+
         #print("positions=[{}, {}]".format(self.positions[0], self.positions[1]))
         #print("getFrametime=", logic.getClockTime())
 

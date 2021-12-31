@@ -16,5 +16,5 @@ class Asteroids(types.KX_GameObject):
         self.positions[1] += self.acceleration
         self.applyMovement([0, self.acceleration, 0], False)
         self.applyMovement([self.acceleration, self.acceleration, 0], False)
-        print("positions=[{}, {}]".format(self.positions[0], self.positions[1]))
+        #print("positions=[{}, {}]".format(self.positions[0], self.positions[1]))
         #print("getFrametime=", logic.getClockTime())
