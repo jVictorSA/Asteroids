@@ -6,7 +6,7 @@ class Asteroids(types.KX_GameObject):
         self.own = old_owner
         self.lifes = lifes
         self.acceleration = float(0.03)
-        self.positions = [float(0.7), float(0.5)]
+        self.positions = [float(0), float(0.5)]
         self.angle_acceleration = float(0.06)
         self.angle = float(0.0)
 
