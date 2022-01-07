@@ -7,4 +7,4 @@ def Start(cont):
 
 def Update(cont):
     asteroid = cont.owner
-    asteroid.AsteroidsMove()
+    asteroid.AsteroidsMoveBotRight()
