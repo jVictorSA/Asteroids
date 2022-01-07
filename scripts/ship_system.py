@@ -7,7 +7,7 @@ class Ship(types.KX_GameObject):
         self.lifes = lifes
         self.acceleration = float(0.0001)
         self.positions = [float(0.0), float(0.0)]
-        self.max_velo = float(0.01)
+        self.max_velo = float(0.011)
         self.angle_acceleration = float(0.01)
         self.angle = float(0.0)
         self.wrap = True
@@ -21,55 +21,52 @@ class Ship(types.KX_GameObject):
 
 
     def ShipWrap(self, up, down):
-        if up>0:
-            if (self.worldPosition[0]>8):
-                #print('1')
-                self.applyMovement([0, -2*self.worldPosition[0], 0], True)
-            elif (self.worldPosition[0]<-8):
-                #print('2')
-                self.applyMovement([0, 2*self.worldPosition[0], 0], True)
-        elif down>0:
-            if (self.worldPosition[0]>8):
-                #print('3')
-                self.applyMovement([0, 2*self.worldPosition[0], 0], True)
-            elif (self.worldPosition[0]<-8):
-                #print('4')
-                self.applyMovement([0, -2*self.worldPosition[0], 0], True)
+        if (self.worldPosition[1]>6):
+            print('1')
+            self.applyMovement([0, -2*self.worldPosition[1], 0], False)
+        elif (self.worldPosition[1]<-6.2):
+            print('2')
+            self.applyMovement([0, -2*self.worldPosition[1]-(0.3), 0], False)
         
-        if up>0:
-            if (self.worldPosition[1]>6):
-                print('5')
-                self.applyMovement([0, -2*self.worldPosition[1], 0], True)
-            elif (self.worldPosition[1]<-6):
-                print('6')
-                self.applyMovement([0, 2*self.worldPosition[1], 0], True)
-        elif (down>0):
-            if (self.worldPosition[1]>6):
-                print('7')
-                self.applyMovement([0, 2*self.worldPosition[1], 0], True)
-            elif (self.worldPosition[1]<-6):
-                print('8')
-                self.applyMovement([0, -2*self.worldPosition[1], 0], True)
-
+        if (self.worldPosition[0]>8):
+            print('1')
+            self.applyMovement([-2*self.worldPosition[0], 0, 0], False)
+        elif (self.worldPosition[0]<-8.2):
+            print('2')
+            self.applyMovement([-2*self.worldPosition[0]-(0.3), 0, 0], False)
 
 
     def ShipMove(self, up, down, left, right, timer):
         if (up>0 and timer==True and self.positions[1]<self.max_velo):
             self.positions[1] += self.acceleration
-            self.applyMovement([0, self.positions[1], 0], True)
+            self.applyMovement([0, self.positions[1], 0], False)
         elif (timer==True and (self.positions[1]>float(0.0))):
             self.positions[1] -= self.acceleration
-            self.applyMovement([0, self.positions[1], 0], True)
+            self.applyMovement([0, self.positions[1], 0], False)
 
         if (down>0 and timer==True and self.positions[1]>-self.max_velo):
             self.positions[1] -= self.acceleration
-            self.applyMovement([0, self.positions[1], 0], True)
+            self.applyMovement([0, self.positions[1], 0], False)
         elif (timer==True and (self.positions[1]< float(0.0))):
             self.positions[1] += self.acceleration
-            self.applyMovement([0, self.positions[1], 0], True)
+            self.applyMovement([0, self.positions[1], 0], False)
+
+        if (left>0) and timer==True and self.positions[0]>-self.max_velo:
+            self.positions[0] -= self.acceleration
+            self.applyMovement([self.positions[0], 0, 0], False)
+        elif (timer==True and self.positions[0]<float(0.0)):
+            self.positions[0] += self.acceleration
+            self.applyMovement([self.positions[0], 0, 0], False)
+
+        if (right>0) and timer==True and self.positions[0]<self.max_velo:
+            self.positions[0] += self.acceleration
+            self.applyMovement([self.positions[0], 0, 0], False)
+        elif (timer==True and self.positions[0]>float(0.0)):
+            self.positions[0] -= self.acceleration
+            self.applyMovement([self.positions[0], 0, 0], False)
 
         self.ShipWrap(up, down)
-        #print("positions=[{}]".format(self.worldPosition))
+        print("positions=[{}]".format(self.worldPosition))
         #print("getFrametime=", logic.getClockTime())
 
     
