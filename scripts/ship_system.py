@@ -5,10 +5,10 @@ class Ship(types.KX_GameObject):
     def __init__(self, old_owner, lifes=int(3)):
         self.own = old_owner
         self.lifes = lifes
-        self.acceleration = float(0.0001)
+        self.acceleration = float(0.001)
         self.positions = [float(0.0), float(0.0)]
-        self.max_velo = float(0.011)
-        self.angle_acceleration = float(0.01)
+        self.max_velo = float(0.11)
+        self.angle_acceleration = float(0.05)
         self.angle = float(0.0)
         self.wrap = True
 
@@ -59,7 +59,7 @@ class Ship(types.KX_GameObject):
         elif (timer==True and (self.positions[1]< float(0.0))):
             self.positions[1] += self.acceleration
             self.applyMovement([0, self.positions[1], 0], True)
-        if (up==0) and (down==0):
+        if (self.positions[0]<self.acceleration) and (self.positions[1]<self.acceleration):
             self.ShipRotate(left, right, timer)
         '''
         if (left>0) and timer==True and self.positions[0]>-self.max_velo:
