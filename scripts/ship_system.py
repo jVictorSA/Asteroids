@@ -36,21 +36,32 @@ class Ship(types.KX_GameObject):
             self.applyMovement([-2*self.worldPosition[0]-(0.3), 0, 0], False)
 
 
+    def ShipRotate(self, left, right, timer):
+        if (left>0 and timer==True):
+            self.angle += self.angle_acceleration
+            self.applyRotation([0, 0, self.angle_acceleration], False)
+        if (right>0 and timer==True):
+            self.angle -= self.angle_acceleration
+            self.applyRotation([0, 0, -self.angle_acceleration], False)
+
+
     def ShipMove(self, up, down, left, right, timer):
         if (up>0 and timer==True and self.positions[1]<self.max_velo):
             self.positions[1] += self.acceleration
-            self.applyMovement([0, self.positions[1], 0], False)
+            self.applyMovement([0, self.positions[1], 0], True)
         elif (timer==True and (self.positions[1]>float(0.0))):
             self.positions[1] -= self.acceleration
-            self.applyMovement([0, self.positions[1], 0], False)
-
+            self.applyMovement([0, self.positions[1], 0], True)
+        
         if (down>0 and timer==True and self.positions[1]>-self.max_velo):
             self.positions[1] -= self.acceleration
-            self.applyMovement([0, self.positions[1], 0], False)
+            self.applyMovement([0, self.positions[1], 0], True)
         elif (timer==True and (self.positions[1]< float(0.0))):
             self.positions[1] += self.acceleration
-            self.applyMovement([0, self.positions[1], 0], False)
-
+            self.applyMovement([0, self.positions[1], 0], True)
+        if (up==0) and (down==0):
+            self.ShipRotate(left, right, timer)
+        '''
         if (left>0) and timer==True and self.positions[0]>-self.max_velo:
             self.positions[0] -= self.acceleration
             self.applyMovement([self.positions[0], 0, 0], False)
@@ -64,17 +75,8 @@ class Ship(types.KX_GameObject):
         elif (timer==True and self.positions[0]>float(0.0)):
             self.positions[0] -= self.acceleration
             self.applyMovement([self.positions[0], 0, 0], False)
-
+        '''
         self.ShipWrap(up, down)
         #print("positions=[{}]".format(self.worldPosition))
         #print("getFrametime=", logic.getClockTime())
-
-    
-    def ShipRotate(self, left, right, timer):
-        if (left>0 and timer==True):
-            self.angle += self.angle_acceleration
-            self.applyRotation([0, 0, self.angle_acceleration], True)
-        if (right>0 and timer==True):
-            self.angle -= self.angle_acceleration
-            self.applyRotation([0, 0, -self.angle_acceleration], True)
 
