@@ -1,6 +1,6 @@
 from bge import logic, types
-from random import randint, seed
-from random import random, choice
+#from ship_system.Ship import ShipWrap
+
 
 class Asteroids(types.KX_GameObject):
     def __init__(self, old_owner, lifes=int(3)):
@@ -10,7 +10,7 @@ class Asteroids(types.KX_GameObject):
         self.positions = [float(0), float(244.5)]
         self.angle_acceleration = float(0.06)
         self.angle = float(0.0)
-        seed(1)
+        #seed(1)
         self.randomNumber = [float(0), float(0)]
 
 
@@ -19,18 +19,18 @@ class Asteroids(types.KX_GameObject):
 
     def AsteroidsMoveBotLeft(self, randx, randy):
         #print(self.randomNumber[0], self.randomNumber[1])
-        print(randx, randy)
+        #print(randx, randy)
         self.applyMovement([0, randy, 0], False)
         self.applyMovement([randx, 0, 0], False)
     
-    def AsteroidsMoveBotRight(self):
-        self.applyMovement([0, self.acceleration + 0.3, 0], False)
-        self.applyMovement([-self.acceleration - 0.01, self.acceleration, 0], False)
+    def AsteroidsMoveBotRight(self, randx, randy):
+        self.applyMovement([0, randy, 0], False)
+        self.applyMovement([randx, 0, 0], False)
 
-    def AsteroidsMoveTopRight(self):
-        self.applyMovement([0, -self.acceleration - 0.04, 0], False)
-        self.applyMovement([-self.acceleration - 0.03, self.acceleration, 0], False)
+    def AsteroidsMoveTopRight(self, randx, randy):
+        self.applyMovement([0, randy, 0], False)
+        self.applyMovement([randx, 0, 0], False)
     
-    def AsteroidsMoveTopLeft(self):
-        self.applyMovement([0, -self.acceleration - 0.02, 0], False)
-        self.applyMovement([self.acceleration, self.acceleration, 0], False)
+    def AsteroidsMoveTopLeft(self, randx, randy):
+        self.applyMovement([0, randy, 0], False)
+        self.applyMovement([randx, 0, 0], False)
