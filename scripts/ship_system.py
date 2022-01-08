@@ -66,7 +66,7 @@ class Ship(types.KX_GameObject):
             self.applyMovement([self.positions[0], 0, 0], False)
 
         self.ShipWrap(up, down)
-        print("positions=[{}]".format(self.worldPosition))
+        #print("positions=[{}]".format(self.worldPosition))
         #print("getFrametime=", logic.getClockTime())
 
     
