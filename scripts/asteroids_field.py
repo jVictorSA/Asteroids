@@ -18,9 +18,6 @@ topRightList = ["AsteroideTopRight0", "AsteroideTopRight1",
                 "AsteroideTopRight4", "AsteroideTopRight5"]
 choice = 0
 
-def Start(cont):
-    own = cont.owner
-    asteroid = Asteroids(own, 3)
 
 def SelectBotLeftAsteroid():
     global choice
@@ -58,16 +55,22 @@ def SelectTopRightAsteroid():
 
     return topRightList[choice-1]
 
+def Start(cont):
+    own = cont.owner
+    own["invoked4"] = True
+    asteroid = Asteroids(own, 3)
+
 def Update(cont):
     asteroid = cont.owner
     scene = logic.getCurrentScene()
-    scene_ina_objs = scene.objects
-    botLeftAst  = SelectBotLeftAsteroid()
-    topRightAst = SelectTopRightAsteroid()
-    topLeftAst  = SelectTopLeftAsteroid()
-    botRightAst = SelectBotRightAsteroid()
-    print(topRightAst)
-    scene.addObject(botLeftAst, "BottomLeft")
-    scene.addObject(botRightAst, "BottomRight")
-    scene.addObject(topRightAst, "TopRight")
-    scene.addObject(topLeftAst, "TopLeft")
+    if asteroid["invoked4"]==True:
+        botLeftAst  = SelectBotLeftAsteroid()
+        topRightAst = SelectTopRightAsteroid()
+        topLeftAst  = SelectTopLeftAsteroid()
+        botRightAst = SelectBotRightAsteroid()
+        print(topRightAst)
+        asteroid["asteroid1"] = scene.addObject(botLeftAst, "BottomLeft")
+        asteroid["asteroid2"] = scene.addObject(botRightAst, "BottomRight")
+        asteroid["asteroid3"] = scene.addObject(topRightAst, "TopRight")
+        asteroid["asteroid4"] = scene.addObject(topLeftAst, "TopLeft")
+        asteroid["invoked4"]=False
