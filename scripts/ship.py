@@ -23,8 +23,8 @@ def Update(cont):
     time = [float(0.0), bool(False)]
     time = ship.TimeAction(ship["time"])
     ship["time"] = time[0]
-    ship.ShipMove(w, s, a, d, time[1])
-    ship.ShipRotate(left, right, time[1])
+    ship.ShipMove(w, s, left, right, time[1])
+    #ship.ShipRotate(left, right, time[1])
 
     tap = logic.KX_INPUT_JUST_ACTIVATED
     enter = keyboard[events.ENTERKEY] == tap
