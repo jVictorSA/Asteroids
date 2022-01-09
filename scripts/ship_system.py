@@ -11,6 +11,7 @@ class Ship(types.KX_GameObject):
         self.angle_acceleration = float(0.05)
         self.angle = float(0.0)
         self.wrap = True
+        self.gear = int(0)
 
 
     def TimeAction(self, time):
@@ -49,17 +50,22 @@ class Ship(types.KX_GameObject):
         if (up>0 and timer==True and self.positions[1]<self.max_velo):
             self.positions[1] += self.acceleration
             self.applyMovement([0, self.positions[1], 0], True)
+            self.gear = 1
         elif (timer==True and (self.positions[1]>float(0.0))):
             self.positions[1] -= self.acceleration
             self.applyMovement([0, self.positions[1], 0], True)
-        
+            self.gear = 1
+
         if (down>0 and timer==True and self.positions[1]>-self.max_velo):
             self.positions[1] -= self.acceleration
             self.applyMovement([0, self.positions[1], 0], True)
-        elif (timer==True and (self.positions[1]< float(0.0))):
+            self.gear = -1
+        elif (timer==True and (self.positions[1]<float(0.0))):
             self.positions[1] += self.acceleration
             self.applyMovement([0, self.positions[1], 0], True)
-        if (self.positions[0]<self.acceleration) and (self.positions[1]<self.acceleration):
+            self.gear = -1
+
+        if self.positions[1]<self.acceleration:
             self.ShipRotate(left, right, timer)
         '''
         if (left>0) and timer==True and self.positions[0]>-self.max_velo:
@@ -77,6 +83,6 @@ class Ship(types.KX_GameObject):
             self.applyMovement([self.positions[0], 0, 0], False)
         '''
         self.ShipWrap(up, down)
-        #print("positions=[{}]".format(self.worldPosition))
+        #print("positions=[{}, {}]".format(self.positions[0], self.positions[1]), "gear=", self.gear)
         #print("getFrametime=", logic.getClockTime())
 
