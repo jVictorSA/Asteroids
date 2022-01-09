@@ -18,8 +18,36 @@ topRightList = ["AsteroideTopRight0", "AsteroideTopRight1",
                 "AsteroideTopRight4", "AsteroideTopRight5"]
 choice = 0
 
+
+
+class asteroidsTree(types.KX_GameObject):
+    def __init__(self):
+        self.root = None
+        self.leftNode = None
+        self.rightNode = None
+
+    def insert(self, obj):
+        if self.root == None:
+            self.root = obj
+            print(self.root)
+        else:
+            pass
+
+
 def Start(cont):
     own = cont.owner
+
+    own["tree1"] = asteroidsTree()
+    own["tree2"] = asteroidsTree()
+    own["tree3"] = asteroidsTree()
+    own["tree4"] = asteroidsTree()
+    own["tree5"] = asteroidsTree()
+    own["tree6"] = asteroidsTree()
+    own["tree7"] = asteroidsTree()
+    own["tree8"] = asteroidsTree()
+    own["tree9"] = asteroidsTree()
+    own["tree10"] = asteroidsTree()
+
     asteroid = Asteroids(own, 3)
 
 def SelectBotLeftAsteroid():
@@ -57,24 +85,9 @@ def SelectTopRightAsteroid():
     choice += 1
     return topRightList[choice-1]
 
-class asteroidsTree:
-    root = None
-
-    def __init__(self):
-        self.leftNode = None
-        self.rightNode = None
-
-    def insert(self, obj):
-        if asteroidsTree.root == None:
-            asteroidsTree.root = obj
-            print(asteroidsTree.root)
-        else:
-            pass
 
 asteroidCount = 0
-tree1 = asteroidsTree(); tree2 = asteroidsTree(); tree3 = asteroidsTree(); tree4 = asteroidsTree()
-tree5 = asteroidsTree(); tree6 = asteroidsTree(); tree7 = asteroidsTree(); tree8 = asteroidsTree()
-tree9 = asteroidsTree(); tree10 = asteroidsTree()
+
 
 def AsteroidsMax():
     if asteroidCount == 10:
@@ -99,9 +112,9 @@ def Update(cont):
     if AsteroidsMax() == 1:
         return
     obj = scene.addObject(botRightAst, "BottomRight")
-    if tree1.root == None:
-        tree1.insert(obj)
-    print(tree1.root)
+    if asteroid["tree1"].root == None:
+        asteroid["tree1"].insert(obj)
+    print(asteroid["tree1"].root)
     '''
     elif tree2.root == None:
         tree2.insert(obj)
