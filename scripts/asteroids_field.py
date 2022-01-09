@@ -34,22 +34,6 @@ class asteroidsTree(types.KX_GameObject):
             pass
 
 
-def Start(cont):
-    own = cont.owner
-
-    own["tree1"] = asteroidsTree()
-    own["tree2"] = asteroidsTree()
-    own["tree3"] = asteroidsTree()
-    own["tree4"] = asteroidsTree()
-    own["tree5"] = asteroidsTree()
-    own["tree6"] = asteroidsTree()
-    own["tree7"] = asteroidsTree()
-    own["tree8"] = asteroidsTree()
-    own["tree9"] = asteroidsTree()
-    own["tree10"] = asteroidsTree()
-
-    asteroid = Asteroids(own, 3)
-
 def SelectBotLeftAsteroid():
     global choice
     if choice > 5:
@@ -95,38 +79,28 @@ def AsteroidsMax():
     else:
         return 0
 
-def Update(cont):
-    global asteroidCount
-    asteroid = cont.owner
+
+def Start(cont):
+    own = cont.owner
     scene = logic.getCurrentScene()
-    scene_ina_objs = scene.objects
+    #scene_ina_objs = scene.objects
     botLeftAst  = SelectBotLeftAsteroid()
     topRightAst = SelectTopRightAsteroid()
     topLeftAst  = SelectTopLeftAsteroid()
     botRightAst = SelectBotRightAsteroid()
-    #print(topRightAst)
-    if AsteroidsMax() == 1:
-        return
-    scene.addObject(botLeftAst, "BottomLeft")
-    asteroidCount += 1
-    if AsteroidsMax() == 1:
-        return
-    obj = scene.addObject(botRightAst, "BottomRight")
-    if asteroid["tree1"].root == None:
-        asteroid["tree1"].insert(obj)
-    print(asteroid["tree1"].root)
-    '''
-    elif tree2.root == None:
-        tree2.insert(obj)
-    elif tree3.root == None:
-        tree3.insert(obj)
-    '''
-    asteroidCount += 1
-    if AsteroidsMax() == 1:
-        return
-    scene.addObject(topRightAst, "TopRight")
-    asteroidCount += 1
-    if AsteroidsMax() == 1:
-        return
-    scene.addObject(topLeftAst, "TopLeft")
-    asteroidCount += 1
+    
+    own["asteroid1"] = scene.addObject(botLeftAst, "BottomLeft")
+    
+    own["asteroid2"] = scene.addObject(botRightAst, "BottomRight")
+    
+    own["asteroid3"] = scene.addObject(topRightAst, "TopRight")
+    
+    own["asteroid4"] = scene.addObject(topLeftAst, "TopLeft")
+
+    asteroid = Asteroids(own, 3)
+
+
+def Update(cont):
+    global asteroidCount
+    asteroid = cont.owner
+        

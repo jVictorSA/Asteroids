@@ -65,7 +65,7 @@ class Ship(types.KX_GameObject):
             self.applyMovement([0, self.positions[1], 0], True)
             #self.applyForce(self.force, False)
         #if (self.positions[0]<self.acceleration) and (self.positions[1]<self.acceleration):
-         #   self.ShipRotate(left, right, timer)
+        self.ShipRotate(left, right, timer)
         '''
         if (left>0) and timer==True and self.positions[0]>-self.max_velo:
             self.positions[0] -= self.acceleration
