@@ -6,9 +6,10 @@ def Update(cont):
     scene = logic.getCurrentScene()
     
     col = cont.sensors["Collision"].positive
-    print("MAIN, col=", col)
+    print("Level 1, col=", col, "name=", asteroid.name)
     if col==True:
-        print("POSITIVE")
+        #print("POSITIVE")
+        print("Level 2")
         scene.addObject("asteroid_mini", asteroid)
         scene.addObject("asteroid_mini", asteroid)
         scene.addObject("asteroid_mini", asteroid)
