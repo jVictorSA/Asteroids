@@ -4,8 +4,9 @@ from scripts.ship_system import Ship
 
 def Start(cont):
     own = cont.owner
-    
+    own["lifes"] = 3
     ship = Ship(own, 3)
+    
 
 
 def Update(cont):
@@ -17,7 +18,7 @@ def Update(cont):
     a = keyboard[events.AKEY]
     s = keyboard[events.SKEY]
     d = keyboard[events.DKEY]
-    #Tiros:
+    
     left = keyboard[events.LEFTARROWKEY]
     right = keyboard[events.RIGHTARROWKEY]
     #print("w=", w)
@@ -32,4 +33,8 @@ def Update(cont):
     scene = logic.getCurrentScene()
     if (enter==True):
         scene_ina_objs = scene.objects
-        scene.addObject("bullet", "cannon")
+        scene.addObject("bullet", "ship")
+
+    #For script invoked_ship.py:
+    #ship["posx"] = ship.positions[0]
+    #ship["posy"] = ship.positions[1]
