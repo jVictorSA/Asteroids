@@ -4,6 +4,7 @@ from scripts.ship_system import Ship
 
 def Start(cont):
     own = cont.owner
+    
     ship = Ship(own, 3)
 
 
@@ -28,7 +29,7 @@ def Update(cont):
 
     tap = logic.KX_INPUT_JUST_ACTIVATED
     enter = keyboard[events.ENTERKEY] == tap
+    scene = logic.getCurrentScene()
     if (enter==True):
-        scene = logic.getCurrentScene()
         scene_ina_objs = scene.objects
         scene.addObject("bullet", "cannon")
