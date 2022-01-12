@@ -1,5 +1,6 @@
 from bge import logic, events, types
 from scripts.asteroids_system import Asteroids
+from scripts.asteroidsLinkedList import Node, asteroidsLinkedList
 
 botLeftList = [ "AsteroideBotLeft0", "AsteroideBotLeft1",
                 "AsteroideBotLeft2", "AsteroideBotLeft3",
@@ -16,22 +17,9 @@ topLeftList = [ "AsteroideTopLeft0", "AsteroideTopLeft1",
 topRightList = ["AsteroideTopRight0", "AsteroideTopRight1",
                 "AsteroideTopRight2", "AsteroideTopRight3",
                 "AsteroideTopRight4", "AsteroideTopRight5"]
+
+#variable for selection of asteroids
 choice = 0
-
-
-
-class asteroidsTree(types.KX_GameObject):
-    def __init__(self):
-        self.root = None
-        self.leftNode = None
-        self.rightNode = None
-
-    def insert(self, obj):
-        if self.root == None:
-            self.root = obj
-            print(self.root)
-        else:
-            pass
 
 
 def SelectBotLeftAsteroid():
@@ -69,9 +57,8 @@ def SelectTopRightAsteroid():
     choice += 1
     return topRightList[choice-1]
 
-
+#counter to track how many asteroids were cast in the scene
 asteroidCount = 0
-
 
 def AsteroidsMax():
     if asteroidCount == 10:
@@ -83,19 +70,27 @@ def AsteroidsMax():
 def Start(cont):
     own = cont.owner
     scene = logic.getCurrentScene()
-    #scene_ina_objs = scene.objects
+    
     botLeftAst  = SelectBotLeftAsteroid()
     topRightAst = SelectTopRightAsteroid()
     topLeftAst  = SelectTopLeftAsteroid()
     botRightAst = SelectBotRightAsteroid()
     
     own["asteroid1"] = scene.addObject(botLeftAst, "BottomLeft")
+    asteroidsLinkedList.insertFront(Node(own["asteroid1"]))
+    #asteroidsLinkedList.printList()
     
     own["asteroid2"] = scene.addObject(botRightAst, "BottomRight")
+    asteroidsLinkedList.insertBack(Node(own["asteroid2"]))
+    #asteroidsLinkedList.printList()
     
     own["asteroid3"] = scene.addObject(topRightAst, "TopRight")
+    asteroidsLinkedList.insertBack(Node(own["asteroid3"]))
+    #asteroidsLinkedList.printList()
     
     own["asteroid4"] = scene.addObject(topLeftAst, "TopLeft")
+    asteroidsLinkedList.insertBack(Node(own["asteroid4"]))
+    #asteroidsLinkedList.printList()
 
     asteroid = Asteroids(own, 3)
 
