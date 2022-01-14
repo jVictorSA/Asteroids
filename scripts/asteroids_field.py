@@ -21,7 +21,6 @@ topRightList = ["AsteroideTopRight0", "AsteroideTopRight1",
 #variable for selection of asteroids
 choice = 0
 
-
 def SelectBotLeftAsteroid():
     global choice
     if choice > 5:
@@ -72,25 +71,32 @@ def Start(cont):
     scene = logic.getCurrentScene()
     
     botLeftAst  = SelectBotLeftAsteroid()
+    botRightAst = SelectBotRightAsteroid()
     topRightAst = SelectTopRightAsteroid()
     topLeftAst  = SelectTopLeftAsteroid()
-    botRightAst = SelectBotRightAsteroid()
     
+    #own["linkedList"] = scene.addObject("asteroidsLinkedList", own)
+
     own["asteroid1"] = scene.addObject(botLeftAst, "BottomLeft")
-    asteroidsLinkedList.insertFront(Node(own["asteroid1"]))
-    #asteroidsLinkedList.printList()
+    botLeftNode = Node(own["asteroid1"])
+    asteroidsLinkedList.insertFront(botLeftNode)
     
     own["asteroid2"] = scene.addObject(botRightAst, "BottomRight")
-    asteroidsLinkedList.insertBack(Node(own["asteroid2"]))
-    #asteroidsLinkedList.printList()
+    botRightNode = Node(own["asteroid2"])
+    asteroidsLinkedList.insertBack(botRightNode)
     
     own["asteroid3"] = scene.addObject(topRightAst, "TopRight")
-    asteroidsLinkedList.insertBack(Node(own["asteroid3"]))
-    #asteroidsLinkedList.printList()
-    
+    topRightNode = Node(own["asteroid3"])
+    asteroidsLinkedList.insertBack(topRightNode)
+
     own["asteroid4"] = scene.addObject(topLeftAst, "TopLeft")
-    asteroidsLinkedList.insertBack(Node(own["asteroid4"]))
-    #asteroidsLinkedList.printList()
+    topLeftNode = Node(own["asteroid4"])
+    
+    asteroidsLinkedList.insertBetween(botRightNode,topLeftNode)
+    asteroidsLinkedList.printList()
+    asteroidsLinkedList.deleteNode(botRightNode, botLeftNode)
+    print("\n")
+    asteroidsLinkedList.printList()
 
     asteroid = Asteroids(own, 3)
 

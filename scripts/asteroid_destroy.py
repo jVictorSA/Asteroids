@@ -31,5 +31,5 @@ def Update(cont):
         scene.addObject(SelectMiniAsteroid(), asteroid)
         #commented because cause malfunction of the code.
         #need further research to function properly as intended
-        #asteroidsLinkedList.printList()
+        asteroid["linkedList"].printList()
         asteroid.endObject()
