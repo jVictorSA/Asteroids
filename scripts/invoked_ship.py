@@ -31,7 +31,7 @@ def Update(cont):
         scn_objs["lifes"]["Text"] = "Lifes: "+lifes
 
     col = cont.sensors["Collision"].positive
-    if (col==True):
+    if (col==True) and (own["timer_invencible"]>float(3.0)):
         lifes = int(0)
         with open(logic.expandPath("//lifes.txt"), 'r') as lfs:
             l = lfs.read()
@@ -46,4 +46,5 @@ def Update(cont):
             cont.activate(act)
             re_Scene = cont.actuators["re_Scene"]
             cont.activate(re_Scene)
+        own["timer_invencible"] = float(0.0)
 
