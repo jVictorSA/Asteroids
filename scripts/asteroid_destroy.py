@@ -43,4 +43,10 @@ def Update(cont):
         #asteroidsLinkedList.deleteNode(asteroid)
         #print("Asteroide destruido. Imprimindo listas de asteroides...")
         #asteroidsLinkedList.printList()
+        scrore = int(0)
+        with open(logic.expandPath("//score.txt"), 'r') as score_file:
+            score = int(score_file.read())
+        with open(logic.expandPath("//score.txt"), 'w') as score_file:
+            score_file.write(str((score+4)))
+        
         asteroid.endObject()

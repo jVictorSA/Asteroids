@@ -2,6 +2,7 @@ from bge import logic
 
 
 def CreateShip():
+    #DEPRECATED
     scene = logic.getCurrentScene()
     scn_objs = scene.objects
     #print("objs=", scn_objs)
@@ -14,6 +15,8 @@ def Start(cont):
     own = cont.owner
     with open(logic.expandPath("//lifes.txt"), 'w') as lifes:
         lifes.write('3')
+    with open(logic.expandPath("//score.txt"), 'w') as score_file:
+        score_file.write('0')
     #CreateShip()
 
 
@@ -28,7 +31,11 @@ def Update(cont):
 
     with open(logic.expandPath("//lifes.txt"), 'r') as lfs:
         lifes = lfs.read()
-        scn_objs["lifes"]["Text"] = "Lifes: "+lifes
+        scn_objs["lifes"]["Text"] = "Space Ships: "+lifes
+    
+    with open(logic.expandPath("//score.txt"), 'r') as score_file:
+        score = score_file.read()
+        scn_objs["score"]["Text"] = "Score: "+score
 
     col = cont.sensors["Collision"].positive
     if (col==True) and (own["timer_invencible"]>float(3.0)):

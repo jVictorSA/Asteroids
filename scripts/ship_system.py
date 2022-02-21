@@ -12,6 +12,8 @@ class Ship(types.KX_GameObject):
         self.angle_acceleration = float(0.05)
         self.angle = float(0.0)
         self.wrap = True
+        self.angle_attack = float(0.2)
+        self.level = int(1)
 
 
     def TimeAction(self, time):
@@ -83,3 +85,13 @@ class Ship(types.KX_GameObject):
         self.ShipWrap(up, down)
         #print("positions=[{}]".format(self.worldPosition))
         #print("getFrametime=", logic.getClockTime())
+
+
+    def LevelManagement(self):
+        score = int(0)
+        with open(logic.expandPath("//score.txt"), 'r') as score_file:
+            score = int(score_file.read())
+        if (score>=10 and self.level==1):
+            self.level = 2
+        elif (score>=50 and self.level==2):
+            self.level = 3
