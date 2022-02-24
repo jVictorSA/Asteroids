@@ -29,7 +29,6 @@ def Update(cont):
     #ship.ShipRotate(left, right, time[1])
 
     ship.LevelManagement()
-
     tap = logic.KX_INPUT_JUST_ACTIVATED
     enter = keyboard[events.ENTERKEY] == tap
     scene = logic.getCurrentScene()
@@ -51,3 +50,28 @@ def Update(cont):
     #For script invoked_ship.py:
     #ship["posx"] = ship.positions[0]
     #ship["posy"] = ship.positions[1]
+
+    red = bool(cont.sensors["red"].positive)
+    green = bool(cont.sensors["green"].positive)
+    blue = bool(cont.sensors["blue"].positive)
+    white = bool(cont.sensors["white"].positive)
+    if (red==True):
+        with open(logic.expandPath("//color.txt"), 'w') as color_file:
+            color_file.write("1")
+        cont.activate(cont.actuators["restart_Scene"])
+        #scene.end()
+    elif (green==True):
+        with open(logic.expandPath("//color.txt"), 'w') as color_file:
+            color_file.write("2")
+        cont.activate(cont.actuators["restart_Scene"])
+        #scene.end()
+    elif (blue==True):
+        with open(logic.expandPath("//color.txt"), 'w') as color_file:
+            color_file.write("3")
+        cont.activate(cont.actuators["restart_Scene"])
+        #scene.end()
+    elif (white==True):
+        with open(logic.expandPath("//color.txt"), 'w') as color_file:
+            color_file.write("4")
+        cont.activate(cont.actuators["restart_Scene"])
+        #scene.end()

@@ -25,6 +25,8 @@ def Update(cont):
             #break
     
     if enter==True:
+        with open(logic.expandPath("//lifes.txt"), 'w') as lifes_file:
+            lifes_file.write("3")
         with open(logic.expandPath("//score.txt"), 'w') as score_file:
             score_file.write("0")
         add_scene = cont.actuators["add_Scene"]

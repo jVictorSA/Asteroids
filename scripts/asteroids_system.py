@@ -22,6 +22,17 @@ class Asteroids(types.KX_GameObject):
         self.angle_acceleration = float(0.06)
         self.angle = float(0.0)
         self.wrap = True
+        with open(logic.expandPath("//color.txt"), 'r') as color_file:
+            c = int(color_file.read())
+            if c==1:
+                self.color = [1,0,0,0]
+            elif (c==2):
+                self.color = [0,1,0,0]
+            elif (c==3):
+                self.color = [0,0,1,0]
+            elif (c==4):
+                self.color = [0,0,0,0]
+
 
     def AsteroidsWrap(self):
         if (self.worldPosition[1]>6):
